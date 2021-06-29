@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+
+import { useDispatch, useSelector } from "react-redux";
+import "./App.css";
+import {getUser} from './js/actions/Actions';
+import AddUser from "./components/AddUser";
+import UserList from "./components/userList"
+import { useEffect } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const dispatch = useDispatch()
+  useEffect(() => {
+  dispatch(getUser())
+    
+  }, [dispatch])
+  const { users, isLoading } = useSelector((state) => state);
+  return <div className="App">
+     {
+    isLoading? <h1>...Loading</h1>:<div><UserList users={users}/></div>
+     }
+     
+     <AddUser/>
+   
+       
+  </div>;
 }
 
 export default App;
