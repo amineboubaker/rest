@@ -1,54 +1,37 @@
-
 import { Button, Modal } from "react-bootstrap";
 import React, { useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { updateUser} from "../js/actions/Actions";
-
-
-const UpdateUser = ({user}) => {
-    const [show, setShow] = useState(false);
+import { updateUser } from "../js/actions/Actions";
+const UpdateUser = ({ el }) => {
+  const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
-const dispatch = useDispatch();
-const [name, setName] = useState(user.name);
 
-const [email, setEmail] = useState(user.email);
-const [password, setpassword] = useState(user.password);
+  const [name, setName] = useState(el.name);
+  const [email, setEmail] = useState(el.email);
+  const [password, setpassword] = useState(el.password);
 
+  const dispatch = useDispatch();
+  const updateNewUser = (e) => {
+    e.preventDefault();
+    dispatch(updateUser(el._id, { name, email, password }));
+    console.log(el._id);
+    handleClose();
+  };
 
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const newUser = {
-           
-            name:name,
-            email:email,
-           password:password
-        }
-        dispatch(updateUser(newUser));
-  
-    handleClose();}
-
-
-
-
-    
-    return (
-        <div>
-            <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
+  return (
+    <>
+      <Button variant="success" onClick={handleShow}>
+        Edit
       </Button>
-
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>add user</Modal.Title>
+        <Modal.Header>
+          <Modal.Title>{"Edit Contact"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form onSubmit={handleSubmit}>
+          <form>
             <label htmlFor="">name</label>
             <input
               type="text"
@@ -61,7 +44,6 @@ const [password, setpassword] = useState(user.password);
               type="text"
               className="form-control"
               value={email}
-
               onChange={(e) => setEmail(e.target.value)}
             />
             <label htmlFor="">password</label>
@@ -69,22 +51,20 @@ const [password, setpassword] = useState(user.password);
               type="text"
               className="form-control"
               value={password}
-
               onChange={(e) => setpassword(e.target.value)}
             />
 
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" onClick={updateNewUser}>
               Save Changes
             </Button>
           </form>
         </Modal.Body>
       </Modal>
     </>
-        </div>
-    )
-    }
+  );
+};
 
-export default UpdateUser
+export default UpdateUser;

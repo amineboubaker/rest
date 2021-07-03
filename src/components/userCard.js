@@ -2,19 +2,23 @@ import React from "react";
 import { Card, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { deleteUser } from "../js/actions/Actions";
-import AddUser from "./AddUser";
+import UpdateUser from "./UpdateUser";
+
+
 
 const UserCard = ({ el }) => {
   const dispatch = useDispatch();
 
+
+
   return (
     <div>
-      <Card style={{ width: "18rem" }}>
+      <Card className="card" style={{ width: "23rem" ,backgroundColor:"#fff5ab",borderRadius: '1em'}}>
+      <p className="profil">{el.name[0].toUpperCase()}</p>
         <Card.Body>
           <Card.Title>{el.name}</Card.Title>
           <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            {el.email}
           </Card.Text>
           <Button
             variant="primary"
@@ -22,12 +26,19 @@ const UserCard = ({ el }) => {
           >
             Show Password
           </Button>
-          <Button variant="danger" onClick={() => dispatch(deleteUser(el._id))}>
+          <Button className="btn"variant="danger" onClick={() => dispatch(deleteUser(el._id))}>
             Delete
           </Button>
-          <AddUser user={el} isUpdated={true}/>
+          <UpdateUser el={el} />
+     
+             
+   
+          
         </Card.Body> 
       </Card>
+      
+
+     
      
     </div>
   );

@@ -3,31 +3,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 .App {
   text-align: center;
-  background-image: url("https://html.sammy-codes.com/images/background.jpg");
-  width: 100%;
-  height: 100%;
 }
 
-.title{
-  
-  font-family: 'Sigmar One'
-  ;
-  margin-top: 0%;
-  padding-top: 2%;
-}
 .card {
  
   font-family: 'Roboto';
   text-align: center;
   background-color: #fff5ab;
   border-radius: 0.5em;
-  margin-bottom: 10%;
-  width: 10%;
-
- 
 
 }
-/* .btn{
+.btn{
   -webkit-transition: opacity 1s ease-in-out;
   -moz-transition: opacity 1s ease-in-out;
   -ms-transition: opacity 1s ease-in-out;
@@ -44,7 +30,7 @@
         -o-transition: opacity 1s ease-in-out;
         transition: opacity 1s ease-in-out;
         opacity: 0.5;
-} */
+}
 .profil {
   cursor: pointer;
   background-color: #c449c2;
@@ -56,7 +42,6 @@
   font-size: 1em;
   border-radius: 50%;
   margin-left: 95px;
-  margin: auto;
 }
 .user{
   display: flex;
@@ -64,4 +49,3 @@
   justify-content: space-around;
   flex-flow: row wrap
 }
-
